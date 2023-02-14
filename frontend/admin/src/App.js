@@ -3,6 +3,7 @@ import './styles/styles.css';
 import Navbar from './components/Navbar';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+
 import Home from './pages/Home';
 import Articles from './pages/Articles';
 import Signin from './pages/Signin';
@@ -13,6 +14,7 @@ import Categories from './pages/Categories';
 import Signout from './pages/Signout';
 import MenuPositions from './pages/MenuPositions';
 import Menus from './pages/Menus';
+import { ModalProvider } from './context/ModalContext';
 
 export default function App() {
   const [menuShow, setMenuShow] = useState(false);
@@ -38,7 +40,7 @@ export default function App() {
   // }
 
   return (
-    <>
+    <ModalProvider>
       <Navbar onToggle={() => setMenuShow(!menuShow)} />
       <div className="main-wrapper">
         <div className={`off-menu bg-dark ${menuShow && 'show'}`}>Test</div>
@@ -53,6 +55,6 @@ export default function App() {
           </Routes>
         </div>
       </div>
-    </>
+    </ModalProvider>
   );
 }
