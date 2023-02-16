@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState, createContext } from 'react';
+import { useToast } from '../hooks';
 
 export const DialogContext = createContext(null);
 export const DialogProvider = ({ children }) => {
@@ -14,6 +15,7 @@ export const DialogProvider = ({ children }) => {
   const handleClose = () => {
     setOpen(false);
   };
+  const ShowToast = useToast();
   return (
     <DialogContext.Provider value={{ setOpen }}>
       {children}
@@ -24,7 +26,12 @@ export const DialogProvider = ({ children }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button 
+          onClick={() => {
+            ShowToast("Hello Toast")
+            handleClose ();
+          }} 
+          autoFocus>
             Agree
           </Button>
         </DialogActions>

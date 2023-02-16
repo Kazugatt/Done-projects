@@ -5,16 +5,17 @@ import App from './App';
 import { ToastProvider } from './contexts';
 import { Dialog } from '@mui/material';
 import { DialogProvider } from './contexts/DialogContext';
+import {BrowserRouter} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <ToastProvider>
       <DialogProvider>
         <App />
       </DialogProvider>
     </ToastProvider>
-  </React.StrictMode>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
